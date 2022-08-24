@@ -20,6 +20,17 @@ end
 fprintf('\n')
 disp('Done!')
 
+%% save standard deviation projections
+outfilename = ['std_Ysignal_' file_nm '.tif'];
+std_Ysignal = std_projection(Ysignal);
+std_Ysignal = uint16(std_Ysignal.*1000);
+imwrite(std_Ysignal,outfilename);
+
+outfilename = ['std_Yac_' file_nm '.tif'];
+std_Yac = std_projection(Yac);
+std_Yac = uint16(std_Yac.*1000);
+imwrite(std_Yac,outfilename);
+
 %% clear large files
 clear Ysignal & Y & Ybg & Yac
 
