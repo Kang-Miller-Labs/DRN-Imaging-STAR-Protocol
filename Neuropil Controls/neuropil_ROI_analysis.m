@@ -36,7 +36,7 @@ save('neuropil_ROI_corr_cat','c_cat_neuropil')
 %their null correlation values concatenated as in the previous sections.
 %This section is written for using a single movie. 
 load('traces_sorted')
-load('c_vec')
+load('traces_pairwise_correlation')
 c_null = NaN(numel(c_vec),10000);
 for i = 1:10000 %10000 iterations
     shuffled_traces = NaN(size(traces_sorted));
