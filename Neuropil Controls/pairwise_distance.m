@@ -37,7 +37,6 @@ figure
 scatter(d,c,30,'b','filled','markerfacealpha',0.3)
 xlabel('pairwise distance (\mum)')
 ylabel('correlation coefficient')
-betterplot
 
 %% linear regression
 reg = table;

@@ -39,11 +39,11 @@ load('traces_sorted')
 load('c_vec')
 c_null = NaN(numel(c_vec),10000);
 for i = 1:10000 %10000 iterations
-    shuffled_traces = NaN(size(traces));
+    shuffled_traces = NaN(size(traces_sorted));
     for j = 1:size(traces_sorted,2) %shuffle each trace
         shuffled_traces(:,j) = timeroll(traces_sorted(:,j));
     end
-    c = corrcoeff(shuffled_traces); %calculate pairwise correlations
+    c = corrcoef(shuffled_traces); %calculate pairwise correlations
     %linearize correlation values
     c = triu(c,1);
     c = nonzeros(c(:));
@@ -53,7 +53,7 @@ save('chance_corr','c_null')
 
 %% Compare the three distributions
 %make sure they're all loaded
-load('read_cells_corr_cat')
+load('real_cells_corr_cat')
 load('neuropil_ROI_corr_cat')
 load('chance_corr')
 
@@ -61,12 +61,13 @@ load('chance_corr')
 figure
 histfit(c_cat_cells,[],'kernel'); hold on
 histfit(c_cat_neuropil,[],'kernel'); hold on
-histfit(c_null,[],'kernel');
+histfit(c_null(:,1),[],'kernel'); %depending on the number of cells in the other datasets,
+%you may have to use a subset of c_null to see comparable plots
 savefig(gcf,'pairwise_correlation_cells_v_neuropil_v_chance')
 
 %K-S tests
 %compare cells to neuropil
 [h_cells_v_pil,p_cells_v_pil,d_cells_v_pil] = kstest2(c_cat_cells,c_cat_neuropil);
-[h_pil_v_null,p_pil_v_null,d_pil_v_null] = kstest2(c_cat_neuropil,c_null);
+[h_pil_v_null,p_pil_v_null,d_pil_v_null] = kstest2(c_cat_neuropil,c_null(:));
 save('neuropil_ROI_analysis','h_cells_v_pil','p_cells_v_pil','d_cells_v_pil',...
     'h_pil_v_null','p_pil_v_null','d_pil_v_null')

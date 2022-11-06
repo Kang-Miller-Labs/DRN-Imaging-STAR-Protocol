@@ -6,13 +6,12 @@
 %% Calculate pairwise distances between cells using ROIs from CalTracer
 %load traces and contours
 load('traces_sorted')
-load('ind_del')
-load('contours')
+load('contours_sorted')
 %get rid of bad cells' contours
 
 %repeat for each movie in this analysis
 pixel_size = 2; %approximate pixel size in micrometers
 %calculate pairwise distances and activity
-pairwise_distance_corr = pairwise_distance(CONTS,traces_sorted,pixel_size);
+pairwise_distance_corr = pairwise_distance(contours_sorted,traces_sorted,pixel_size);
 
 
