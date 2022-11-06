@@ -10,6 +10,6 @@ save('models','regressions')
 save('residuals','residuals')
 
 %% Visualize traces against motion
-cell_number = 1;
+cell_number = 30;
 figure; plot(traces(:,cell_number)); hold on
-plot(motion_fitted(:,cell_number));
+plot(fitted(:,cell_number));
