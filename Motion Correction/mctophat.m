@@ -20,7 +20,7 @@ function [mcmovie,mcfiltered,offsets] = mctophat(proc_method)
 %-------------------------------------------------------------------------
 
 %% Read TIFF stack
-[filename,pathname] = uigetfile({'*.tif';'*.hdf5';'*.avi'},'Select movie');
+[filename,pathname] = uigetfile({'*.tif';'*.tiff';'*.hdf5';'*.avi'},'Select movie');
 disp('Reading file..');
 tifstack = read_file([pathname filename]);
 cd(pathname)
