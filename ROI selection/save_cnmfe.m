@@ -1,13 +1,6 @@
 %% SAVES ALL VARIABLES REQUIRED TO RESTART CNMF-E LATER, USING LOAD_CNMFE.M
 %Grace Paquelet, 2017
 
-%% save contours on Ysignal Cnn image and Cn image
-figure; plot_contours_GP(Cnn,true,neuron.Coor,1,prism);
-savefig(gcf,'Cnn.fig')
-figure; plot_contours_GP(Cn,true,neuron.Coor,1,prism);
-savefig(gcf,'Cn.fig')
-close all
-
 %% save Ysignal
 outfilename = ['Ysignal_' file_nm '.tif'];
 Ysignal = uint16(Ysignal);
@@ -19,6 +12,12 @@ for i = 2:size(Ysignal,3)
 end
 fprintf('\n')
 disp('Done!')
+
+%% generate Yac if not present
+if ~exist('Yac','var')
+    Yac = neuron.A*neuron.C;
+    Yac = reshape(Yac,d1,d2,numFrame);
+end
 
 %% save standard deviation projections
 outfilename = ['std_Ysignal_' file_nm '.tif'];
