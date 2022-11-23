@@ -1,0 +1,3 @@
+This is a static copy of code from Pengcheng Zhou and the Lab of Liam Paninski at Columbia University. 
+When using this code, please cite Zhou et al. (2018). Efficient and accurate extraction of in vivo calcium signals from microendoscopic video data. Elife 4. 
+The current version of this code is available at https://github.com/zhoupc/CNMF_E. 
