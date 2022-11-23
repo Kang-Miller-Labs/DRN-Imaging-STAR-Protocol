@@ -31,7 +31,7 @@ else
     neuron_full.options.dist = 3;
 end
 
-merge_thr = [1e-1, 0.85, 0];     % thresholds for merging neurons; [spatial overlap ratio, temporal correlation of calcium traces, spike correlation]
+merge_thr = [0.6, 0.6, 0];     % thresholds for merging neurons; [spatial overlap ratio, temporal correlation of calcium traces, spike correlation]
 dmin = 1;
 %% options for running deconvolution 
 neuron_full.options.deconv_flag = true; 
