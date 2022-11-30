@@ -19,6 +19,17 @@ if ~exist('Yac','var')
     Yac = reshape(Yac,d1,d2,numFrame);
 end
 
+%% save Yac
+outfilename = ['Yac_' file_nm '.tif'];
+Yac = uint16(Yac);
+imwrite(Yac(:,:,1),outfilename);
+for i = 2:size(Yac,3)
+    loop_track('Writing denoised movie, frame #...',i,100);
+    imwrite(Yac(:,:,i),outfilename,'writemode','append');
+end
+fprintf('\n')
+disp('Done!')
+
 %% save standard deviation projections
 outfilename = ['std_Ysignal_' file_nm '.tif'];
 std_Ysignal = std_projection(Ysignal);
